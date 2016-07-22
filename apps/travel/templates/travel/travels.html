@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <title></title>
+    <style>
+      table{
+        border-style:groove;
+      }
+      th{
+          border-style:groove;
+      }
+      .head{
+        margin-left:500px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class = "head">
+        <a href="{% url 'my_logout' %}">Log out</a>
+
+    </div>
+    <h2>Hello {{users.name}}</h2>
+    <h4>Your Trip Schedules</h4>
+    <table>
+      <tr>
+        <th>Destination</th>
+        <th>Travel Start Date</th>
+        <th>Travel End Date</th>
+        <th>Plan</th>
+      </tr>
+      {% for usertrip in usertrips %}
+      <tr>
+        <td><p><a href="/travels/destination/{{usertrip.id}}">{{usertrip.destination}}</a></p></td>
+        <td>{{usertrip.travel_from}}</td>
+        <td>{{usertrip.travel_to}}</td>
+        <td>{{usertrip.description}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <!-- shows session's user too -->
+    <h4>Other User's Travel Plan</h4>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Destination</th>
+        <th>Travel Start Date</th>
+        <th>Travel End Date</th>
+        <th>Plan</th>
+      </tr>
+      {% for trip in trips %}
+      <tr>
+        <td>{{trip.user.name}}</td>
+        <td><p><a href="/travels/destination/{{trip.id}}">{{trip.destination}}</a></p></td>
+        <td>{{trip.travel_from}}</td>
+        <td>{{trip.travel_to}}</td>
+        <td><a href="/travels/join/{{trip.id}}">Join</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+
+<h3><a href="/travels/add">Add travel Plan</a></h3>
+
+  </body>
+</html>

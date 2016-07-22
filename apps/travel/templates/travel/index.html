@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+    div{
+
+      display:inline-block;
+      vertical-align: top;
+    }
+    form{
+      margin-left:10px;
+      vertical-align: top;
+    }
+
+    </style>
+  </head>
+  <body>
+    <h3>Welcome!</h3>
+    <div>
+      <form  action="{% url 'my_create'%}" method="post">
+        {% csrf_token %}
+        <fieldset>
+          <legend>Register:</legend>
+        Name : <input type="text" name="name"><br>
+        username : <input type="text" name="username"><br>
+        password : <input type="text" name="password"><br>
+        conpassword : <input type="text" name="conpassword"><br>
+        <input type="submit" value="register">
+        </fieldset>
+      </form>
+    </div>
+    <div>
+      <fieldset>
+        <legend>Login:</legend>
+      <form  action="/travels" method="post">
+        {% csrf_token %}
+        Username : <input type="text" name="username"><br>
+        Password : <input type="text" name="password"><br>
+        <input type="submit" value="login"><br>
+        </fieldset>
+      </form>
+    </div>
+  </body>
+</html>
